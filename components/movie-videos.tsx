@@ -1,6 +1,5 @@
+import { API_URL } from "../app/constants";
 import styles from "../styles/movie-video.module.css";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 async function getVideos(id: string) {
   console.log(`Fetching videos: ${Date.now()}`);
