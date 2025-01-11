@@ -1,14 +1,21 @@
 import { Suspense } from "react";
-import { API_URL } from "../../../(home)/page";
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
 
-export default async function MovieDetail({
-  params,
-}: {
+interface IParams {
   params: { id: string };
-}) {
-  const { id } = await params;
+}
+
+export async function generateMetadata({ params: { id } }: IParams) {
+  // const { id } = await params;
+  const movie = await getMovie(id);
+  return {
+    title: movie.title,
+  };
+}
+
+export default async function MovieDetailPage({ params: { id } }: IParams) {
+  // const { id } = await params;
   return (
     <div>
       <Suspense fallback={<h1>Loading movie info</h1>}>
